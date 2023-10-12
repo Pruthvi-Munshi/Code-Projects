@@ -111,8 +111,110 @@ class LinkedList:
             else:
                 print("index not present")
 
-# methos to remove first node of a linked list
-    def removeFirstNode(self):
+# method to remove first node of a linked list
+    def remove_first_node(self):
         if self.head == None:
             return
         self.head = self.head.next
+
+# Method to remove the last node of a linked list
+    def remove_last_nade(self):
+        if self.head is None:
+            return
+    
+        current_node = self.head
+        while current_node.next.next:
+            current_node = current_node.next
+
+        current_node.next = None
+
+# Method to remove at given index
+    def remove_at_index(self, index):
+        if self.head == None:
+            return
+        
+        current_node = self.head
+        position = 0
+        if position == index:
+            self.remove_first_node()
+        else:
+            while current_node != None and position + 1 != index:
+                position = position + 1
+                current_node = current_node.next
+            
+            if current_node != None:
+                current_node.next = current_node.next.next
+            else:
+                print("Index not present")
+
+# Method to remove a node from linked list
+    def remove_node(self, data):
+        current_node = self.head
+
+        while current_node != None and current_node.next.data != data:
+            current_node = current_node.next
+
+        if current_node == None:
+            return
+        else:
+            current_node.next = current_node.next.next
+
+# print the size of a linked list
+    def size_of_linked_list(self):
+        size = 0
+        if self.head:
+            current_node = self.head
+            while current_node:
+                size = size + 1
+                current_node = current_node.next
+            return size
+        else:
+            return 0
+        
+#__repr__ means representation, tells comp how you want object to be represented
+    def __repr__(self): 
+        node = self.head
+        nodes = []
+        while node is not None:
+            nodes.append(node.data)
+            node = node.next
+        nodes.append("None")
+        return " -> ".join(nodes)
+    
+# create a new linked list
+# llist = LinkedList()
+
+# add nodes to the linked list
+# llist.insertAtEnd("a")
+# llist.insertAtEnd("b")
+# llist.insertAtBegin("c")
+# llist.insertAtEnd("d")
+# llist.insertAtIndex("g", 2)
+
+# print the linked list
+# print("Node Data")
+# print(llist)
+
+# remove a nodes from the linked list
+# print("\nRemove First Node")
+# llist.remove_first_node()
+# print(llist)
+# print("Remove Last Node")
+# llist.remove_last_node()
+# print(llist)
+# print("Remove Node at Index 1")
+# llist.remove_at_index(1)
+# print(llist)
+
+
+# print the linked list again
+# print("\nLinked list after removing a node:")
+# print(llist)
+
+# print("\nUpdate node Value")
+# llist.updateNode("z", 0)
+# print(llist)
+
+# print("\nSize of linked list :", end=" ")
+# print(llist.sizeOfLL())
+# print(llist)
